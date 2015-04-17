@@ -1,13 +1,28 @@
-apply plugin: 'com.android.application'
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:1.0.0'
+    }
+}
+
+allprojects {
+    repositories {
+        mavenCentral()
+    }
+}
+
+apply plugin: 'android'
 
 android {
-    compileSdkVersion 22
-    buildToolsVersion "22.0.0"
+    compileSdkVersion 19
+    buildToolsVersion "19.1.0"
 
     defaultConfig {
         applicationId "com.guina.numbergame"
         minSdkVersion 8
-        targetSdkVersion 22
+        targetSdkVersion 17
         versionCode 1
         versionName "1.0"
     }
