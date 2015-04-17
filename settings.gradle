@@ -1,1 +1,1 @@
-include ':welcomescreen'
+include ':welcomescreen', ':highnumentry'
