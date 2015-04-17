@@ -4,12 +4,13 @@ import com.guina.welcomescreen.util.SystemUiHider;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
-
+import android.widget.EditText;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -18,6 +19,7 @@ import android.view.View;
  * @see SystemUiHider
  */
 public class Welcome extends Activity {
+    public final static String EXTRA_MESSAGE = "com.guina.GitTest2.MESSAGE";
     /**
      * Whether or not the system UI should be auto-hidden after
      * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
@@ -112,7 +114,7 @@ public class Welcome extends Activity {
         // Upon interacting with UI controls, delay any scheduled hide()
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
-        findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
+        findViewById(R.id.start_button).setOnTouchListener(mDelayHideTouchListener);
     }
 
     @Override
@@ -156,5 +158,13 @@ public class Welcome extends Activity {
     private void delayedHide(int delayMillis) {
         mHideHandler.removeCallbacks(mHideRunnable);
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
+    }
+
+    public void sendMessage(View view) {
+        Intent intent = new Intent(this, DisplayMessageActivity.class);
+        EditText editText = (EditText) findViewById(R.id.edit_message);
+        String message = editText.getText().toString();
+        intent.PutExtra(EXTRA_MESSAGE, message);
+        startActivity(intent);
     }
 }
